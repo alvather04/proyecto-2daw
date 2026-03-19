@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Hub - League of Legends Info</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">Nexus Hub</div>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#comunidades">Comunidades</a></li>
+                <li><a href="#perfil">Mi Perfil</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO CARRUSEL -->
+    <section class="hero-carousel" id="carousel">
+        <!-- Slide 1: Worlds -->
+        <div class="slide active" style="background-image: url('img/leaguelegendsworlds_4385023b.jpg');">
+            <div class="overlay">
+                <div class="slide-content">
+                    <h2>Worlds 2025</h2>
+                    <p>La competición definitiva regresa a Europa. Prepárate para ver a los mejores equipos del mundo luchar por la Copa del Invocador en el nuevo parche.</p>
+                    <button class="btn-hero">Más Información</button>
+                </div>
+            </div>
+        </div>
+        <!-- Slide 2: Zaahen con habilidades -->
+<div class="slide" style="background-image: url('img/enhanced_Zaahen_0.png');">
+    <div class="overlay">
+        <div class="slide-content">
+            <h2>Zaahen - Habilidades</h2>
+            <p>Explora las habilidades de Zaahen y mira cómo funcionan en acción.</p>
+        </div>
+
+        <!-- CONTENEDOR DE HABILIDADES -->
+        <div class="abilities-container">
+
+            <!-- Íconos de habilidades (interactivos) -->
+            <div class="ability-icons">
+                <img data-ability="pasiva" src="img/pasiva_zaahen.png">
+                <img data-ability="q" src="img/q_zaahen.jfif">
+                <img data-ability="w" src="img/w_zaahen.jfif">
+                <img data-ability="e" src="img/e_zaahen.jfif">
+                <img data-ability="r" src="img/r_zaahen.jfif">
+            </div>
+
+            <!-- Panel que cambia dinámicamente -->
+            <div class="ability-info" id="abilityInfo">
+                <h3>Pasa el ratón o haz clic en una habilidad</h3>
+                <video id="abilityVideo" controls muted loop></video>
+                <p id="abilityDesc"></p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+        <!-- Slide 3: Evento Soul Fighter -->
+        <div class="slide" style="background-image: url('img/enhanced_Jinx_60.png');">
+            <div class="overlay">
+                <div class="slide-content">
+                    <h2>Evento: Soul Fighter</h2>
+                    <p>Nuevo modo de juego Arena, skins exclusivas y misiones. ¡Demuestra tu valía en el torneo de las almas!</p>
+                    <button class="btn-hero">Ver Recompensas</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--CARTAS -->
+    <section class="cards-section" id="cards">
+        <h2 class="cards-title">Destacados del Parche</h2>
+
+        <div class="cards-container">
+            
+            <!-- Carta 1 -->
+            <div class="card">º
+                <div class="card-img" style="background-image: url('https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg');"></div>
+                <div class="card-content">
+                    <h3>Aatrox Buffeado</h3>
+                    <p>El destructor oscuro vuelve al meta gracias a mejoras en su Q y sustain en línea.</p>
+                    <a href="#" class="card-btn">Leer Más</a>
+                </div>
+            </div>
+
+            <!-- Carta 2 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ezreal_0.jpg');"></div>
+                <div class="card-content">
+                    <h3>Nuevo Build para Ezreal</h3>
+                    <p>Letalidad vuelve a ser viable. Descubre la build más rota del parche 15.9.</p>
+                    <a href="#" class="card-btn">Ver Build</a>
+                </div>
+            </div>
+
+            <!-- Carta 3 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Morgana_0.jpg');"></div>
+                <div class="card-content">
+                    <h3>Evento: Eclipse Lunar</h3>
+                    <p>Recompensas exclusivas, misiones y skins temáticas para todos los roles.</p>
+                    <a href="#" class="card-btn">Detalles</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- "INTELIGENCIA ARTIFICIAL" -->
+    <section class="ai-section">
+        <div class="ai-header">
+            <h2>Meta Analyser AI</h2>
+            <span>Versión del Parche: 15.9</span>
+            <p style="margin-top: 15px; color: #aaa;">Nuestra IA analiza el parche actual para recomendarte tu mejor opción (Pick).</p>
+        </div>
+
+        <div class="ai-container">
+            <!-- Formulario -->
+            <div class="form-box">
+                <form id="aiForm">
+                    <div class="form-group">
+                        <label>Posición</label>
+                        <select id="role" required>
+                            <option value="" disabled selected>Selecciona tu línea...</option>
+                            <option value="top">Top Lane</option>
+                            <option value="jungle">Jungla</option>
+                            <option value="mid">Mid Lane</option>
+                            <option value="adc">ADC</option>
+                            <option value="support">Soporte</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Estilo de Juego</label>
+                        <select id="style" required>
+                            <option value="" disabled selected>¿Cómo juegas?</option>
+                            <option value="aggressive">Agresivo / All-in</option>
+                            <option value="passive">Seguro / Escalado</option>
+                            <option value="strategic">Estratégico / Utilidad</option>
+                            <option value="roaming">Roaming / Apoyo al mapa</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Rango Actual</label>
+                        <select id="rank" required>
+                            <option value="low">Hierro - Oro</option>
+                            <option value="mid">Platino - Esmeralda</option>
+                            <option value="high">Diamante +</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-analyze">
+                        <span id="btnText">ANALIZAR META</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Resultado -->
+            <div class="result-box" id="resultBox">
+                <img src="" alt="Champion Art" class="champion-bg" id="champImg">
+                <div class="result-content">
+                    <h3>RECOMENDACIÓN 15.9</h3>
+                    <h1 class="champ-name" id="champName">NOMBRE</h1>
+                    <p class="champ-desc" id="champReason">Razón de la elección...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Nexus Hub. Sitio fan no oficial. League of Legends es propiedad de Riot Games.</p>
+    </footer>
+
+    <script>
+        /* --- LOGICA DEL CARRUSEL --- */
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Cambiar imagen cada 5 segundos
+        setInterval(nextSlide, 5000);
+
+
+       /* --- LOGICA DE LA "IA" (PARCHE 25.23) --- */
+const championData = {
+    'top': {
+        'aggressive': { name: 'Aatrox', img: 'Aatrox_0', reason: 'Domina el parche 25.23 gracias al buff en su sustain y presión en línea.' },
+        'passive': { name: 'Sion', img: 'Sion_0', reason: 'El tanque más estable del meta tras los nerfs a otros picks defensivos.' },
+        'strategic': { name: 'Shen', img: 'Shen_0', reason: 'Su R sigue siendo una herramienta decisiva para macro y peleas globales.' },
+        'roaming': { name: 'Quinn', img: 'Quinn_0', reason: 'Movilidad extrema para influir en todas las líneas rápidamente.' }
+    },
+    'jungle': {
+        'aggressive': { name: 'Briar', img: 'Briar_0', reason: 'El jungla más fuerte en early por ajustes recientes a su curación.' },
+        'passive': { name: 'Lillia', img: 'Lillia_0', reason: 'Clear rápido y seguro; perfecta para escalar y pelear midgame.' },
+        'strategic': { name: 'Zac', img: 'Zac_0', reason: 'El mejor iniciador del parche. Mucha utilidad y engage estable.' },
+        'roaming': { name: 'Rammus', img: 'Rammus_0', reason: 'Excelente contra composiciones AD. Gankeos muy seguros.' }
+    },
+    'mid': {
+        'aggressive': { name: 'Akali', img: 'Akali_0', reason: 'Muy fuerte en duelos tras buffs al daño explosivo.' },
+        'passive': { name: 'Anivia', img: 'Anivia_0', reason: 'Gran control de oleadas y escalado brutal al late.' },
+        'strategic': { name: 'TwistedFate', img: 'TwistedFate_0', reason: 'Su presión global sigue siendo clave en alto elo.' },
+        'roaming': { name: 'Taliyah', img: 'Taliyah_0', reason: 'Push + roaming = dominio total del mapa.' }
+    },
+    'adc': {
+        'aggressive': { name: 'Kalista', img: 'Kalista_0', reason: 'Ha vuelto al meta por las mejoras en su control de pelea temprana.' },
+        'passive': { name: 'Jinx', img: 'Jinx_0', reason: 'El hipercarry más consistente del parche.' },
+        'strategic': { name: 'Varus', img: 'Varus_0', reason: 'La build AP/Utilidad domina las peleas en zonas cerradas.' },
+        'roaming': { name: 'Twitch', img: 'Twitch_0', reason: 'Perfecto para sorprender en otras líneas con invisibilidad.' }
+    },
+    'support': {
+        'aggressive': { name: 'Rell', img: 'Rell_0', reason: 'Engage más fuerte del parche. Excelente iniciadora.' },
+        'passive': { name: 'Lulu', img: 'Lulu_0', reason: 'Sin cambios: sigue siendo la mejor en proteger hipercarrys.' },
+        'strategic': { name: 'Thresh', img: 'Thresh_0', reason: 'Kit completo para peel + iniciación.' },
+        'roaming': { name: 'Bard', img: 'Bard_0', reason: 'Movilidad perfecta para crear presión por el mapa.' }
+    }
+};
+
+const fallbackChamp = { 
+    name: 'Teemo', 
+    img: 'Teemo_0', 
+    reason: 'Si no sabes qué jugar en el parche 25.23, siempre puedes ser molesto.' 
+};
+
+document.getElementById('aiForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const role = document.getElementById('role').value;
+    const style = document.getElementById('style').value;
+
+    const btn = document.getElementById('btnText');
+    const resultBox = document.getElementById('resultBox');
+
+    btn.innerText = "ANALIZANDO META...";
+    resultBox.style.display = 'none';
+
+    setTimeout(() => {
+        let selection = championData[role]?.[style] || fallbackChamp;
+
+        const imgUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${selection.img}.jpg`;
+        
+        document.getElementById('champImg').src = imgUrl;
+        document.getElementById('champName').innerText = selection.name;
+        document.getElementById('champReason').innerText = selection.reason;
+
+        resultBox.classList.add('visible');
+        resultBox.style.display = 'flex';
+        btn.innerText = "ANALIZAR DE NUEVO";
+    }, 800);
+});
+
+    </script>
+</body>
+</html>
