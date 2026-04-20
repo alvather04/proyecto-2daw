@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foro - Nexus Hub</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">Nexus Hub</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="forum.html">Foro</a></li>
+                <li><a href="profile.html">Mi Perfil</a></li>
+                <li><a href="login.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- SECCIÓN DEL FORO -->
+    <section class="forum-section" id="forum">
+        <div class="forum-main-container">
+            <!-- SIDEBAR IZQUIERDO -->
+            <aside class="reddit-sidebar">
+                <div class="sidebar-section">
+                    <h3>Filtros</h3>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" class="sidebar-link active">🏠 Inicio</a></li>
+                        <li><a href="#" class="sidebar-link">⭐ Popular</a></li>
+                        <li><a href="#" class="sidebar-link">📰 Noticias</a></li>
+                        <li><a href="#" class="sidebar-link">🔍 Explorar</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Categorías</h3>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" class="sidebar-link">Estrategia</a></li>
+                        <li><a href="#" class="sidebar-link">Campeones</a></li>
+                        <li><a href="#" class="sidebar-link">Parches</a></li>
+                        <li><a href="#" class="sidebar-link">Competitivo</a></li>
+                        <li><a href="#" class="sidebar-link">General</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <button class="btn-create-community">+ Crear Comunidad</button>
+                </div>
+            </aside>
+
+            <!-- CONTENEDOR CENTRAL -->
+            <main class="reddit-main">
+                <!-- BOTÓN CREAR POST -->
+                <div class="create-post-bar">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/profileicon/1.png" alt="Avatar" class="user-avatar-small">
+                    <input type="text" placeholder="¿Qué tienes en mente?" class="post-input-bar">
+                    <button class="btn-post-bar">Publicar</button>
+                </div>
+
+                <!-- POSTS LIST -->
+                <div class="reddit-posts-list">
+                    <!-- POST 1 -->
+                    <div class="reddit-post" data-post-id="1">
+                        <div class="post-votes-side">
+                            <button class="vote-arrow upvote">▲</button>
+                            <span class="votes-count">234</span>
+                            <button class="vote-arrow downvote">▼</button>
+                        </div>
+
+                        <div class="post-thumbnail post-click-area">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_0.jpg" alt="Post thumbnail">
+                        </div>
+
+                        <div class="post-body">
+                            <div class="post-meta">
+                                <span class="post-subreddit">r/nexushub</span>
+                                <span class="meta-dot">•</span>
+                                <span class="post-author">u/SummonerAlpha</span>
+                                <span class="meta-dot">•</span>
+                                <span class="post-time">hace 2 horas</span>
+                                <span class="tag strategy">Estrategia</span>
+                            </div>
+                            <h2 class="post-title post-click-area">¿Cuál es el mejor build para Ahri en el meta actual?</h2>
+                            <p class="post-description">He notado que muchos OTPs de Ahri están usando Everfrost + Soyfón en lugar del build tradicional. ¿Alguien más lo ha probado? ¿Realmente mejora el daño?</p>
+
+                            <div class="post-footer">
+                                <button class="post-action comments-btn">
+                                    <span class="comment-icon">💬</span>
+                                    <span class="comment-count">12</span>
+                                    <span class="comment-label">Comentarios</span>
+                                </button>
+                                <button class="post-action share-btn">
+                                    <span>🔄</span>
+                                    <span>Compartir</span>
+                                </button>
+                                <button class="post-action save-btn">
+                                    <span>⭐</span>
+                                    <span>Guardar</span>
+                                </button>
+                                <button class="post-action more-btn">
+                                    <span>⋯</span>
+                                    <span>Más</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- POST 2 -->
+                    <div class="reddit-post" data-post-id="2">
+                        <div class="post-votes-side">
+                            <button class="vote-arrow upvote">▲</button>
+                            <span class="votes-count">189</span>
+                            <button class="vote-arrow downvote">▼</button>
+                        </div>
+
+                        <div class="post-thumbnail post-click-area">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg" alt="Post thumbnail">
+                        </div>
+
+                        <div class="post-body">
+                            <div class="post-meta">
+                                <span class="post-subreddit">r/nexushub</span>
+                                <span class="meta-dot">•</span>
+                                <span class="post-author">u/CampeonMeta</span>
+                                <span class="meta-dot">•</span>
+                                <span class="post-time">hace 5 horas</span>
+                                <span class="tag patch">Parches</span>
+                            </div>
+                            <h2 class="post-title post-click-area">Cambios de Parche 15.9 - Análisis de Nerfs y Buffs</h2>
+                            <p class="post-description">Aatrox recibió un buff importante en su Q y sustain. Después de jugarlo en unas cuantas ranked, definitivamente vuelve al meta. Estos son los cambios más relevantes del parche...</p>
+
+                            <div class="post-footer">
+                                <button class="post-action comments-btn">
+                                    <span class="comment-icon">💬</span>
+                                    <span class="comment-count">28</span>
+                                    <span class="comment-label">Comentarios</span>
+                                </button>
+                                <button class="post-action share-btn">
+                                    <span>🔄</span>
+                                    <span>Compartir</span>
+                                </button>
+                                <button class="post-action save-btn">
+                                    <span>⭐</span>
+                                    <span>Guardar</span>
+                                </button>
+                                <button class="post-action more-btn">
+                                    <span>⋯</span>
+                                    <span>Más</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- POST 3 -->
+                    <div class="reddit-post" data-post-id="3">
+                        <div class="post-votes-side">
+                            <button class="vote-arrow upvote">▲</button>
+                            <span class="votes-count">145</span>
+                            <button class="vote-arrow downvote">▼</button>
+                        </div>
+
+                        <div class="post-thumbnail post-click-area">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_0.jpg" alt="Post thumbnail">
+                        </div>
+
+                        <div class="post-body">
+                            <div class="post-meta">
+                                <span class="post-subreddit">r/nexushub</span>
+                                <span class="meta-dot">•</span>
+                                <span class="post-author">u/ProPlayerTips</span>
+                                <span class="meta-dot">•</span>
+                                <span class="post-time">hace 8 horas</span>
+                                <span class="tag champions">Campeones</span>
+                            </div>
+                            <h2 class="post-title post-click-area">Guía completa: Macro juego en mid lane</h2>
+                            <p class="post-description">La mayoría de jugadores de mid lane solo se enfocan en su línea. Aquí comparto mi enfoque para impactar todo el mapa como mid laner. Con estos tips llegué a Master en 2 temporadas...</p>
+
+                            <div class="post-footer">
+                                <button class="post-action comments-btn">
+                                    <span class="comment-icon">💬</span>
+                                    <span class="comment-count">45</span>
+                                    <span class="comment-label">Comentarios</span>
+                                </button>
+                                <button class="post-action share-btn">
+                                    <span>🔄</span>
+                                    <span>Compartir</span>
+                                </button>
+                                <button class="post-action save-btn">
+                                    <span>⭐</span>
+                                    <span>Guardar</span>
+                                </button>
+                                <button class="post-action more-btn">
+                                    <span>⋯</span>
+                                    <span>Más</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- POST 4 -->
+                    <div class="reddit-post" data-post-id="4">
+                        <div class="post-votes-side">
+                            <button class="vote-arrow upvote">▲</button>
+                            <span class="votes-count">98</span>
+                            <button class="vote-arrow downvote">▼</button>
+                        </div>
+
+                        <div class="post-thumbnail post-click-area">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/profileicon/10.png" alt="Post thumbnail">
+                        </div>
+
+                        <div class="post-body">
+                            <div class="post-meta">
+                                <span class="post-subreddit">r/nexushub</span>
+                                <span class="meta-dot">•</span>
+                                <span class="post-author">u/NovicePlayer</span>
+                                <span class="meta-dot">•</span>
+                                <span class="post-time">hace 12 horas</span>
+                                <span class="tag general">General</span>
+                            </div>
+                            <h2 class="post-title post-click-area">¿Qué rol debería principal si soy nuevo?</h2>
+                            <p class="post-description">Soy totalmente nuevo en League of Legends. He jugado un poco con todos los roles pero no sé cuál escoger. ¿Cuál recomiendan para aprender el juego?</p>
+
+                            <div class="post-footer">
+                                <button class="post-action comments-btn">
+                                    <span class="comment-icon">💬</span>
+                                    <span class="comment-count">34</span>
+                                    <span class="comment-label">Comentarios</span>
+                                </button>
+                                <button class="post-action share-btn">
+                                    <span>🔄</span>
+                                    <span>Compartir</span>
+                                </button>
+                                <button class="post-action save-btn">
+                                    <span>⭐</span>
+                                    <span>Guardar</span>
+                                </button>
+                                <button class="post-action more-btn">
+                                    <span>⋯</span>
+                                    <span>Más</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- POST 5 -->
+                    <div class="reddit-post" data-post-id="5">
+                        <div class="post-votes-side">
+                            <button class="vote-arrow upvote">▲</button>
+                            <span class="votes-count">267</span>
+                            <button class="vote-arrow downvote">▼</button>
+                        </div>
+
+                        <div class="post-thumbnail post-click-area">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jinx_0.jpg" alt="Post thumbnail">
+                        </div>
+
+                        <div class="post-body">
+                            <div class="post-meta">
+                                <span class="post-subreddit">r/nexushub</span>
+                                <span class="meta-dot">•</span>
+                                <span class="post-author">u/WorldsWatcher</span>
+                                <span class="meta-dot">•</span>
+                                <span class="post-time">hace 1 día</span>
+                                <span class="tag competitive">Competitivo</span>
+                            </div>
+                            <h2 class="post-title post-click-area">Predicciones para Worlds 2025 - Europa como anfitriona</h2>
+                            <p class="post-description">¿Cuál creen que será el equipo sorpresa de Worlds este año? Con la nueva meta, muchos equipos sorpresa podrían dar la batalla. Yo apuesto por T1 ganando nuevamente...</p>
+
+                            <div class="post-footer">
+                                <button class="post-action comments-btn">
+                                    <span class="comment-icon">💬</span>
+                                    <span class="comment-count">156</span>
+                                    <span class="comment-label">Comentarios</span>
+                                </button>
+                                <button class="post-action share-btn">
+                                    <span>🔄</span>
+                                    <span>Compartir</span>
+                                </button>
+                                <button class="post-action save-btn">
+                                    <span>⭐</span>
+                                    <span>Guardar</span>
+                                </button>
+                                <button class="post-action more-btn">
+                                    <span>⋯</span>
+                                    <span>Más</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Nexus Hub. League of Legends es propiedad de Riot Games. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- MODAL POR DEFECTO (OCULTO) -->
+    <div id="post-modal" class="post-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close">✕</button>
+            <div class="modal-post-detail">
+                <div class="modal-post-header">
+                    <div class="modal-user-info">
+                        <img src="" alt="Avatar" class="modal-avatar">
+                        <div class="modal-user-details">
+                            <span class="modal-username"></span>
+                            <span class="modal-subreddit"></span>
+                            <span class="modal-time"></span>
+                        </div>
+                    </div>
+                    <span class="modal-tag"></span>
+                </div>
+
+                <h2 class="modal-title"></h2>
+                <p class="modal-description"></p>
+
+                <div class="modal-image-container">
+                    <img src="" alt="Post content" class="modal-image">
+                </div>
+
+                <div class="modal-stats">
+                    <span class="modal-votes">234 votos</span>
+                    <span class="modal-sep">•</span>
+                    <span class="modal-comments-count">12 comentarios</span>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="modal-action modal-upvote">▲ Votar</button>
+                    <button class="modal-action modal-comment">💬 Comentar</button>
+                    <button class="modal-action modal-share">🔄 Compartir</button>
+                    <button class="modal-action modal-save">⭐ Guardar</button>
+                </div>
+
+                <!-- COMENTARIOS SECTION -->
+                <div class="modal-comments-section">
+                    <h3>Comentarios</h3>
+                    <div class="comment-input-box">
+                        <input type="text" placeholder="Escribe un comentario..." class="comment-input">
+                        <button class="btn-comment-send">Enviar</button>
+                    </div>
+                    <div class="comments-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== DATOS DE POSTS ==========
+        const postsData = {
+            1: {
+                title: "¿Cuál es el mejor build para Ahri en el meta actual?",
+                author: "SummonerAlpha",
+                subreddit: "r/nexushub",
+                time: "hace 2 horas",
+                tag: "Estrategia",
+                image: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_0.jpg",
+                description: "He notado que muchos OTPs de Ahri están usando Everfrost + Soyfón en lugar del build tradicional. ¿Alguien más lo ha probado? ¿Realmente mejora el daño?",
+                votes: 234,
+                comments: 12,
+                commentsData: [
+                    { author: "u/BuildMaster", text: "Sí, Everfrost es mejor para el control de masas!", votes: 45 },
+                    { author: "u/AhriMain", text: "Depende de la elo donde juegues", votes: 32 }
+                ]
+            },
+            2: {
+                title: "Cambios de Parche 15.9 - Análisis de Nerfs y Buffs",
+                author: "CampeonMeta",
+                subreddit: "r/nexushub",
+                time: "hace 5 horas",
+                tag: "Parches",
+                image: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg",
+                description: "Aatrox recibió un buff importante en su Q y sustain. Después de jugarlo en unas cuantas ranked, definitivamente vuelve al meta. Estos son los cambios más relevantes del parche...",
+                votes: 189,
+                comments: 28,
+                commentsData: [
+                    { author: "u/PatchAnalyzer", text: "Excelente análisis, muy completo", votes: 78 },
+                    { author: "u/Ranked", text: "Volveré a jugar Aatrox", votes: 56 }
+                ]
+            },
+            3: {
+                title: "Guía completa: Macro juego en mid lane",
+                author: "ProPlayerTips",
+                subreddit: "r/nexushub",
+                time: "hace 8 horas",
+                tag: "Campeones",
+                image: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_0.jpg",
+                description: "La mayoría de jugadores de mid lane solo se enfocan en su línea. Aquí comparto mi enfoque para impactar todo el mapa como mid laner. Con estos tips llegué a Master en 2 temporadas...",
+                votes: 145,
+                comments: 45,
+                commentsData: [
+                    { author: "u/MidLaner", text: "Increíble guía, muchas gracias!", votes: 123 },
+                    { author: "u/NewPlayer", text: "Esto me ayudó mucho", votes: 87 }
+                ]
+            },
+            4: {
+                title: "¿Qué rol debería principal si soy nuevo?",
+                author: "NovicePlayer",
+                subreddit: "r/nexushub",
+                time: "hace 12 horas",
+                tag: "General",
+                image: "https://ddragon.leagueoflegends.com/cdn/14.1.1/img/profileicon/10.png",
+                description: "Soy totalmente nuevo en League of Legends. He jugado un poco con todos los roles pero no sé cuál escoger. ¿Cuál recomiendan para aprender el juego?",
+                votes: 98,
+                comments: 34,
+                commentsData: [
+                    { author: "u/Coach", text: "Te recomiendo Mid o ADC para aprender", votes: 156 },
+                    { author: "u/Helper", text: "Support es más fácil para principiantes", votes: 98 }
+                ]
+            },
+            5: {
+                title: "Predicciones para Worlds 2025 - Europa como anfitriona",
+                author: "WorldsWatcher",
+                subreddit: "r/nexushub",
+                time: "hace 1 día",
+                tag: "Competitivo",
+                image: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jinx_0.jpg",
+                description: "¿Cuál creen que será el equipo sorpresa de Worlds este año? Con la nueva meta, muchos equipos sorpresa podrían dar la batalla. Yo apuesto por T1 ganando nuevamente...",
+                votes: 267,
+                comments: 156,
+                commentsData: [
+                    { author: "u/FansT1", text: "T1 siempre gana!", votes: 234 },
+                    { author: "u/Analyst", text: "Creo que Fnatic puede sorprender", votes: 189 }
+                ]
+            }
+        };
+
+        // ========== VARIABLES GLOBALES ==========
+        let savedPosts = new Set();
+        let commentedPosts = new Set();
+        let currentPostId = null;
+
+        // ========== FUNCIONES PRINCIPALES ==========
+        function openPostModal(postId) {
+            const post = postsData[postId];
+            currentPostId = postId;
+            const modal = document.getElementById('post-modal');
+
+            // Información del post
+            document.querySelector('.modal-title').textContent = post.title;
+            document.querySelector('.modal-description').textContent = post.description;
+            document.querySelector('.modal-image').src = post.image;
+            document.querySelector('.modal-username').textContent = `u/${post.author}`;
+            document.querySelector('.modal-subreddit').textContent = post.subreddit;
+            document.querySelector('.modal-time').textContent = post.time;
+            
+            const tagEl = document.querySelector('.modal-tag');
+            tagEl.textContent = post.tag;
+            tagEl.className = `modal-tag tag ${post.tag.toLowerCase()}`;
+            
+            document.querySelector('.modal-votes').textContent = `${post.votes} votos`;
+            document.querySelector('.modal-comments-count').textContent = `${post.comments} comentarios`;
+
+            // Llenar comentarios
+            const commentsList = document.querySelector('.comments-list');
+            commentsList.innerHTML = '';
+            post.commentsData.forEach(comment => {
+                const commentEl = document.createElement('div');
+                commentEl.className = 'comment-item';
+                commentEl.innerHTML = `
+                    <div class="comment-header">
+                        <strong>${comment.author}</strong>
+                        <span class="comment-votes">${comment.votes} votos</span>
+                    </div>
+                    <p class="comment-text">${comment.text}</p>
+                `;
+                commentsList.appendChild(commentEl);
+            });
+
+            // Actualizar estado del botón guardar
+            const modalSaveBtn = document.querySelector('.modal-save');
+            if (savedPosts.has(postId)) {
+                modalSaveBtn.classList.add('saved');
+                modalSaveBtn.style.color = '#fbbf24';
+            } else {
+                modalSaveBtn.classList.remove('saved');
+                modalSaveBtn.style.color = 'var(--grey-text)';
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePostModal() {
+            const modal = document.getElementById('post-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentPostId = null;
+        }
+
+        // ========== EVENT LISTENERS - POSTS ==========
+        // Abrir post al hacer clic en título o thumbnail
+        document.querySelectorAll('.post-click-area').forEach(element => {
+            element.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const postId = this.closest('.reddit-post').dataset.postId;
+                openPostModal(postId);
+            });
+        });
+
+        // Votos en el listado
+        document.querySelectorAll('.vote-arrow').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const count = this.parentElement.querySelector('.votes-count');
+                let newCount;
+                
+                if (this.classList.contains('upvote')) {
+                    newCount = parseInt(count.textContent) + 1;
+                    this.style.color = '#4ade80';
+                } else {
+                    newCount = Math.max(0, parseInt(count.textContent) - 1);
+                    this.style.color = '#ef4444';
+                }
+                
+                count.textContent = newCount;
+                setTimeout(() => {
+                    this.style.color = 'var(--grey-text)';
+                }, 300);
+            });
+        });
+
+        // Botón Comentarios en listado
+        document.querySelectorAll('.comments-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const postId = this.closest('.reddit-post').dataset.postId;
+                openPostModal(postId);
+                setTimeout(() => {
+                    document.querySelector('.comment-input').focus();
+                }, 200);
+            });
+        });
+
+        // Botón Guardar en listado
+        document.querySelectorAll('.save-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const postId = this.closest('.reddit-post').dataset.postId;
+                
+                if (savedPosts.has(postId)) {
+                    savedPosts.delete(postId);
+                    btn.classList.remove('saved');
+                    btn.style.color = 'var(--grey-text)';
+                } else {
+                    savedPosts.add(postId);
+                    btn.classList.add('saved');
+                    btn.style.color = '#fbbf24';
+                }
+            });
+        });
+
+        // Botón Compartir en listado
+        document.querySelectorAll('.share-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const postId = this.closest('.reddit-post').dataset.postId;
+                const post = postsData[postId];
+                alert(`Compartir: "${post.title}"\n\n✓ Enlace copiado al portapapeles`);
+            });
+        });
+
+        // Botón Más en listado
+        document.querySelectorAll('.more-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                alert('Más opciones:\n• Reportar\n• No me interesa\n• Ocultar\n• Guardar para después');
+            });
+        });
+
+        // ========== EVENT LISTENERS - MODAL ==========
+        document.querySelector('.modal-close').addEventListener('click', closePostModal);
+        document.querySelector('.modal-overlay').addEventListener('click', closePostModal);
+
+        // Cerrar con Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closePostModal();
+        });
+
+        // Modal - Botón Votar
+        document.querySelector('.modal-upvote').addEventListener('click', function() {
+            alert('¡Voto añadido! 👍');
+            this.style.color = '#4ade80';
+            setTimeout(() => {
+                this.style.color = 'var(--grey-text)';
+            }, 300);
+        });
+
+        // Modal - Botón Comentar
+        document.querySelector('.modal-comment').addEventListener('click', function() {
+            document.querySelector('.comment-input').focus();
+        });
+
+        // Modal - Botón Compartir
+        document.querySelector('.modal-share').addEventListener('click', function() {
+            const post = postsData[currentPostId];
+            alert(`Compartir: "${post.title}"\n\n✓ Enlace copiado al portapapeles`);
+        });
+
+        // Modal - Botón Guardar
+        document.querySelector('.modal-save').addEventListener('click', function() {
+            if (savedPosts.has(currentPostId)) {
+                savedPosts.delete(currentPostId);
+                this.classList.remove('saved');
+                this.style.color = 'var(--grey-text)';
+                alert('Post removido de guardados');
+            } else {
+                savedPosts.add(currentPostId);
+                this.classList.add('saved');
+                this.style.color = '#fbbf24';
+                alert('Post guardado ⭐');
+            }
+        });
+
+        // Modal - Enviar comentario
+        document.querySelector('.btn-comment-send').addEventListener('click', function() {
+            const input = document.querySelector('.comment-input');
+            if (input.value.trim()) {
+                const commentsList = document.querySelector('.comments-list');
+                const newComment = document.createElement('div');
+                newComment.className = 'comment-item new-comment';
+                newComment.innerHTML = `
+                    <div class="comment-header">
+                        <strong>u/YourUser</strong>
+                        <span class="comment-votes">0 votos</span>
+                    </div>
+                    <p class="comment-text">${input.value}</p>
+                `;
+                commentsList.insertBefore(newComment, commentsList.firstChild);
+                input.value = '';
+                input.focus();
+                
+                setTimeout(() => {
+                    newComment.classList.remove('new-comment');
+                }, 500);
+            }
+        });
+
+        // Modal - Enter para enviar comentario
+        document.querySelector('.comment-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.querySelector('.btn-comment-send').click();
+            }
+        });
+
+        // ========== EVENT LISTENERS - SIDEBAR ==========
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // ========== EVENT LISTENERS - CREAR POST ==========
+        document.querySelector('.btn-post-bar').addEventListener('click', function() {
+            const input = document.querySelector('.post-input-bar');
+            if (input.value.trim()) {
+                alert('✓ Post publicado: ' + input.value);
+                input.value = '';
+            } else {
+                alert('Por favor escribe algo');
+            }
+        });
+    </script>
+
+</body>
+</html>
