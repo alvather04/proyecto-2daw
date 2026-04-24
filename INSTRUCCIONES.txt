@@ -1,0 +1,113 @@
+═══════════════════════════════════════════════════════════════
+         SISTEMA DE AUTENTICACIÓN - INSTRUCCIONES DE USO
+═══════════════════════════════════════════════════════════════
+
+✅ ARCHIVOS CREADOS/ACTUALIZADOS:
+─────────────────────────────────────────────────────────────────
+
+1. config.php
+   └─ Configuración de la base de datos
+   └─ Inicializa sesiones PHP
+   └─ NO MODIFICAR - Solo si cambias credenciales BD
+
+2. login.php ⭐
+   └─ Página principal de autenticación
+   └─ Acceso: http://localhost/proyecto-2daw/login.php
+   └─ Campos: Correo electrónico y Contraseña
+
+3. perfil.php ⭐
+   └─ Página protegida - Solo usuarios logueados
+   └─ Acceso: http://localhost/proyecto-2daw/perfil.php
+   └─ Muestra: ID, nombre, correo y región del usuario
+
+4. verificar_sesion.php
+   └─ Archivo de protección para otras páginas
+   └─ Uso: Agregar en cualquier archivo que requiera login
+   └─ Ejemplo: require_once 'verificar_sesion.php';
+
+5. cerrar_sesion.php
+   └─ Destruye la sesión
+   └─ Redirige a login.php
+
+6. base_datos.sql
+   └─ Script SQL completo
+   └─ Importar en MySQL/phpMyAdmin
+
+═══════════════════════════════════════════════════════════════
+📋 CREDENCIALES DE PRUEBA:
+─────────────────────────────────────────────────────────────────
+
+Usuario 1:
+  Correo: alvaro@email.com
+  Contraseña: pass123
+
+Usuario 2:
+  Correo: lucia@email.com
+  Contraseña: lucia456
+
+Usuario 3:
+  Correo: carlos@email.com
+  Contraseña: carlos789
+
+═══════════════════════════════════════════════════════════════
+🚀 PASOS PARA CONFIGURAR:
+─────────────────────────────────────────────────────────────────
+
+1. CREAR LA BASE DE DATOS:
+   • Abre phpMyAdmin
+   • Importa el archivo base_datos.sql
+   • O ejecuta manualmente el SQL en MySQL
+
+2. VERIFICAR CONFIGURACIÓN:
+   • Abre config.php
+   • Verifica que DB_USER y DB_PASS sean correctos
+   • Verifica que DB_NAME sea 'proyecto'
+
+3. PROBAR EL LOGIN:
+   • Abre: http://localhost/proyecto-2daw/login.php
+   • Ingresa: alvaro@email.com / pass123
+   • Se redirigirá a perfil.php
+
+4. PROTEGER OTRAS PÁGINAS:
+   • Agrega esto al inicio de cualquier archivo PHP:
+   
+   <?php
+   require_once 'verificar_sesion.php';
+   ?>
+   
+   • Así requiere que el usuario esté logueado
+
+═══════════════════════════════════════════════════════════════
+⚙️ CARACTERÍSTICAS:
+─────────────────────────────────────────────────────────────────
+
+✓ Validación de credenciales contra BD
+✓ Sesiones seguras con PHP
+✓ Prepared statements (previene SQL injection)
+✓ Mensajes de error claros
+✓ Redireccionamientos automáticos
+✓ Nombres en español (variables y comentarios)
+
+═══════════════════════════════════════════════════════════════
+⚠️  IMPORTANTE - SEGURIDAD EN PRODUCCIÓN:
+─────────────────────────────────────────────────────────────────
+
+Este código es para EDUCACIÓN/DESARROLLO.
+
+Cambios necesarios para producción:
+  • Usar password_hash() al guardar contraseñas
+  • Usar password_verify() al verificar
+  • Implementar HTTPS obligatorio
+  • Agregar protección CSRF
+  • Limitar intentos de login
+  • Usar variables de entorno para credenciales
+  • Agregar logs de seguridad
+
+═══════════════════════════════════════════════════════════════
+📄 DOCUMENTACIÓN:
+─────────────────────────────────────────────────────────────────
+
+Ver archivo: GUIA_LOGIN.md
+(Contiene información técnica detallada)
+
+═══════════════════════════════════════════════════════════════
