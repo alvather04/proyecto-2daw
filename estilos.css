@@ -2246,3 +2246,166 @@
                 width: 100%;
             }
         }
+
+        /* --- BUSCAR INVOCADOR --- */
+        .search-section {
+            background: linear-gradient(135deg, rgba(9, 20, 40, 0.9), rgba(1, 10, 19, 0.9));
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .search-section h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .search-input, .search-select {
+            padding: 10px 15px;
+            border: 2px solid #1e2328;
+            border-radius: 8px;
+            background: #0d1117;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus, .search-select:focus {
+            border-color: var(--gold);
+        }
+
+        .search-input::placeholder {
+            color: #666;
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /* --- RANKINGS SECTION --- */
+        .rankings-section {
+            margin: 20px 0;
+        }
+
+        .rankings-section h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .rankings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .rank-card {
+            background: linear-gradient(145deg, #091428, #010a13);
+            border: 2px solid #1e2328;
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .rank-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(200, 170, 110, 0.2);
+            border-color: var(--gold);
+        }
+
+        .rank-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .queue-type {
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .hot-streak {
+            background: linear-gradient(90deg, #ff6b6b, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .rank-tier {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .tier-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 8px;
+            object-fit: contain;
+            background: #0d1117;
+            padding: 5px;
+        }
+
+        .tier-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .rank-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #1e2328;
+        }
+
+        .rank-stats .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px;
+        }
+
+        .rank-stats .stat-label {
+            font-size: 11px;
+            color: var(--grey-text);
+            text-transform: uppercase;
+        }
+
+        .rank-stats .stat-value {
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .rank-stats .stat-value.wins {
+            color: #4ade80;
+        }
+
+        .rank-stats .stat-value.losses {
+            color: #f87171;
+        }
+
+        .rank-stats .stat-value.winrate {
+            color: var(--gold);
+        }

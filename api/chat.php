@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $input = json_decode(file_get_contents('php://input'), true);
 $message = trim($input['message'] ?? '');
+$userId = isset($input['user_id']) ? intval($input['user_id']) : null;
 
 if (empty($message)) {
     http_response_code(400);
@@ -27,7 +28,10 @@ if (empty($message)) {
     exit;
 }
 
-$userId = getUserId();
+if (!$userId) {
+    echo json_encode(['success' => false, 'error' => 'Usuario no autenticado']);
+    exit;
+}
 
 $aiResponse = callGeminiAPI($message);
 
@@ -49,12 +53,7 @@ try {
     ]);
 } catch(Exception $e) {
     echo json_encode([
-        'success' => true,
-        'chat' => [
-            'message' => $message,
-            'response' => $aiResponse,
-            'created_at' => date('Y-m-d H:i:s')
-        ],
-        'warning' => 'Chat saved locally only'
+        'success' => false,
+        'error' => $e->getMessage()
     ]);
 }

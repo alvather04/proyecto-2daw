@@ -2,7 +2,7 @@
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, OPTIONS');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -12,12 +12,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 require_once 'config.php';
 
-$userId = getUserId();
+$input = json_decode(file_get_contents('php://input'), true);
+$userId = isset($input['user_id']) ? intval($input['user_id']) : null;
 
 try {
     $pdo = getDB();
-    $stmt = $pdo->prepare("SELECT id, message, response, created_at FROM chats WHERE user_id = ? ORDER BY created_at DESC LIMIT 50");
-    $stmt->execute([$userId]);
+    
+    if ($userId) {
+        $stmt = $pdo->prepare("SELECT id, message, response, created_at FROM chats WHERE user_id = ? ORDER BY created_at DESC LIMIT 50");
+        $stmt->execute([$userId]);
+    } else {
+        $stmt = $pdo->query("SELECT id, message, response, created_at FROM chats ORDER BY created_at DESC LIMIT 50");
+    }
+    
     $chats = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
     echo json_encode([
@@ -25,13 +32,8 @@ try {
         'chats' => $chats
     ]);
 } catch(Exception $e) {
-    $localChats = [];
-    if (isset($_SESSION['local_chats'])) {
-        $localChats = $_SESSION['local_chats'];
-    }
-    
     echo json_encode([
-        'success' => true,
-        'chats' => array_reverse($localChats)
+        'success' => false,
+        'error' => $e->getMessage()
     ]);
 }

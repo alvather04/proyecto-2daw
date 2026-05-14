@@ -8,10 +8,10 @@
     </button>
     <nav :class="{ active: menuOpen }">
       <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="forum.html">Foro</a></li>
-        <li><a href="profile.html">Mi Perfil</a></li>
-        <li><a href="login.html">Contacto</a></li>
+        <li><router-link to="/">Inicio</router-link></li>
+        <li><router-link to="/forum">Foro</router-link></li>
+        <li><router-link to="/profile">Mi Perfil</router-link></li>
+        <li><router-link to="/contact">Contacto</router-link></li>
       </ul>
     </nav>
   </header>
@@ -27,5 +27,7 @@ export default {
 </script>
 
 <style scoped>
-/* Los estilos ya están en estilos.css */
+a.router-link-active {
+  color: #00d4ff;
+}
 </style>

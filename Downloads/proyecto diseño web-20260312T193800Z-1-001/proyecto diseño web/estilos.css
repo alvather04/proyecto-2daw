@@ -1,0 +1,592 @@
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --gold: #c8aa6e;
+            --gold-hover: #f0e6d2;
+            --dark-blue: #091428;
+            --blue-accent: #0ac8b9;
+            --grey-text: #a09b8c;
+            --bg-dark: #010a13;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: rgba(9, 20, 40, 0.95);
+            border-bottom: 2px solid var(--gold);
+            padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--grey-text);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--gold-hover);
+            text-shadow: 0 0 8px rgba(200, 170, 110, 0.6);
+        }
+
+        /* Efecto de subrayado al hover */
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 0;
+            background-color: var(--blue-accent);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* CARRUSEL lo he cogido de reddit */
+        .hero-carousel {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            background-size: cover;
+            background-position: center;
+
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .overlay {
+            background: linear-gradient(to top, var(--bg-dark), transparent 80%);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            padding: 4rem;
+        }
+
+        .slide-content {
+            max-width: 500px;
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .slide-content h2 {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .slide-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .btn-hero {
+            padding: 12px 30px;
+            background-color: var(--blue-accent);
+            color: var(--bg-dark);
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .btn-hero:hover {
+            background-color: transparent;
+            color: var(--blue-accent);
+            border: 1px solid var(--blue-accent);
+            box-shadow: 0 0 15px var(--blue-accent);
+        }
+
+        /* --- "IA" --- */
+        .ai-section {
+            padding: 4rem 2rem;
+            width: 100vw;
+            text-align: center;
+            background-image: url('img/los-personajes-de-league-of-legends-5283.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            z-index: 0;
+        }
+
+        /* Overlay oscuro para mejorar la legibilidad */
+        .ai-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+
+
+        .ai-header {
+            margin-bottom: 3rem;
+        }
+
+        .ai-header h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .ai-header span {
+            color: var(--gold);
+            font-size: 1rem;
+            border: 1px solid var(--gold);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .ai-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .form-box {
+            background: #0f1923;
+            padding: 2rem;
+            border: 1px solid #333;
+            width: 100%;
+            max-width: 400px;
+            text-align: left;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 12px;
+            background-color: #1e2833;
+            border: 1px solid #444;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        select:focus {
+            border-color: var(--gold);
+        }
+
+        .btn-analyze {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, var(--gold), #a08d55);
+            border: none;
+            color: var(--bg-dark);
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .btn-analyze:hover {
+            filter: brightness(1.1);
+        }
+
+        /* Resultado de la IA */
+        .result-box {
+            width: 100%;
+            max-width: 600px;
+            min-height: 400px;
+            background: #091428;
+            border: 2px solid var(--gold);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-box.visible {
+            display: flex;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .champion-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            z-index: 0;
+            transition: transform 5s ease;
+        }
+
+        .result-box:hover .champion-bg {
+            transform: scale(1.05);
+        }
+
+        .result-content {
+            position: relative;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2rem;
+            border: 1px solid var(--gold);
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .champ-name {
+            font-size: 3rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .champ-desc {
+            font-style: italic;
+            color: #ddd;
+        }
+
+        /* ANIMACIONES */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* --- LOGIN SECTION --- */
+        .login-section {
+            padding: 4rem 2rem;
+            width: 100vw;
+            text-align: center;
+            background-image: url('img/artwork-fantasy-art-landscape-summoners-rift-wallpaper-preview\ \(1\).jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            z-index: 0;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Overlay oscuro para mejorar la legibilidad */
+        .login-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+
+        .login-container {
+            max-width: 400px;
+            width: 100%;
+            background: rgba(15, 25, 35, 0.9);
+            border: 1px solid var(--gold);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .login-header h2 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            color: var(--grey-text);
+            margin-bottom: 2rem;
+        }
+
+        .login-form-box {
+            text-align: left;
+        }
+
+        .login-form-box .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .login-form-box label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .login-form-box input {
+            width: 100%;
+            padding: 12px;
+            background-color: #1e2833;
+            border: 1px solid #444;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            border-radius: 5px;
+        }
+
+        .login-form-box input:focus {
+            border-color: var(--gold);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, var(--gold), #a08d55);
+            border: none;
+            color: var(--bg-dark);
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            border-radius: 5px;
+            transition: filter 0.3s;
+        }
+
+        .btn-login:hover {
+            filter: brightness(1.1);
+        }
+
+        .login-links {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .login-links a {
+            display: block;
+            color: var(--grey-text);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .login-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #050a10;
+            color: #555;
+            margin-top: 4rem;
+            border-top: 1px solid #222;
+        }
+
+        .cards-section {
+            padding: 60px 10%;
+            background: #0a0a0a;
+        }
+
+        .cards-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #111;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 18px rgba(0, 0, 0, 0.6);
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.9);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-content {
+            padding: 20px;
+            color: #ddd;
+        }
+
+        .card-content h3 {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .card-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 18px;
+            color: #fff;
+            background: #3b82f6;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: background .3s ease;
+        }
+
+        .card-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .ability-icons img {
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .ability-icons img:hover {
+            transform: scale(1.15);
+        }
+
+        /* CONTENEDOR GENERAL: habilidades a la izquierda, video a la derecha */
+        .abilities-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            gap: 40px;
+        }
+
+        /* HABILIDADES EN FILA (HORIZONTAL) */
+        .ability-icons {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+        }
+
+        /* ICONOS DE HABILIDADES - MISMO TAMAÑO */
+        .ability-icons img {
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .ability-icons img:hover {
+            transform: scale(1.15);
+        }
+
+        /* VIDEO */
+        .ability-info {
+            margin-left: auto;
+            width: 40%;
+            max-width: 600px;
+        }
+
+        #abilityVideo {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
