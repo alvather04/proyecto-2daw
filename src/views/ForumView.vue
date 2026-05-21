@@ -1,6 +1,11 @@
 <template>
+  <!-- Foro estilo Reddit con categorías, publicaciones, votos y ventana de detalle -->
   <div class="forum-section">
     <div class="forum-main-container">
+
+      <!-- ============================================================ -->
+      <!-- BARRA LATERAL IZQUIERDA (filtros y categorías)               -->
+      <!-- ============================================================ -->
       <aside class="reddit-sidebar">
         <div class="sidebar-section">
           <h3>Filtros</h3>
@@ -27,7 +32,12 @@
         </div>
       </aside>
 
+      <!-- ============================================================ -->
+      <!-- CONTENIDO PRINCIPAL                                          -->
+      <!-- ============================================================ -->
       <main class="reddit-main">
+
+        <!-- Barra para crear una publicación nueva -->
         <div class="create-post-bar">
           <img :src="userAvatar" alt="Avatar" class="user-avatar-small">
           <input v-model="newPostTitle" type="text" placeholder="Título del post..." class="post-input-bar" style="margin-right: 5px;">
@@ -44,19 +54,26 @@
         </div>
 
         <div v-if="loading" style="text-align: center; padding: 20px;">Cargando...</div>
-        
+
+        <!-- ============================================================ -->
+        <!-- LISTA DE PUBLICACIONES                                      -->
+        <!-- ============================================================ -->
         <div class="reddit-posts-list">
           <div v-for="post in filteredPosts" :key="post.id" class="reddit-post">
+
+            <!-- Columna de votos (arriba/abajo) -->
             <div class="post-votes-side">
               <button class="vote-arrow upvote" :class="{ voted: userVotes[post.id] === 'up' }" @click="vote(post.id, 'up')">▲</button>
               <span class="votes-count">{{ post.vote_count || post.votes }}</span>
               <button class="vote-arrow downvote" :class="{ voted: userVotes[post.id] === 'down' }" @click="vote(post.id, 'down')">▼</button>
             </div>
 
+            <!-- Miniatura -->
             <div class="post-thumbnail post-click-area" @click="openModal(post.id)">
               <img :src="post.image || userAvatar" alt="Post thumbnail">
             </div>
 
+            <!-- Cuerpo de la publicación -->
             <div class="post-body">
               <div class="post-meta">
                 <span class="post-subreddit">r/nexushub</span>
@@ -69,6 +86,7 @@
               <h2 class="post-title post-click-area" @click="openModal(post.id)">{{ post.title }}</h2>
               <p class="post-description">{{ post.description }}</p>
 
+              <!-- Botones de la publicación -->
               <div class="post-footer">
                 <button class="post-action comments-btn" @click="openModal(post.id)">
                   <span class="comment-icon">💬</span>
@@ -94,6 +112,9 @@
       </main>
     </div>
 
+    <!-- ============================================================ -->
+    <!-- VENTANA DE DETALLE (modal)                                   -->
+    <!-- ============================================================ -->
     <div id="post-modal" class="post-modal" :class="{ active: modalOpen }">
       <div class="modal-overlay" @click="closeModal"></div>
       <div class="modal-content">
@@ -124,6 +145,7 @@
             <span class="modal-comments-count">{{ selectedPost.comment_count || 0 }} comentarios</span>
           </div>
 
+          <!-- Botones dentro del detalle -->
           <div class="modal-actions">
             <button class="modal-action modal-upvote" :class="{ voted: userVotes[selectedPost.id] === 'up' }" @click="vote(selectedPost.id, 'up')">▲ Votar</button>
             <button class="modal-action modal-comment" @click="focusCommentInput">💬 Comentar</button>
@@ -131,6 +153,7 @@
             <button class="modal-action modal-save" :class="{ saved: savedPosts.has(selectedPost.id) }" @click="toggleSave(selectedPost.id)">⭐ Guardar</button>
           </div>
 
+          <!-- Sección de comentarios -->
           <div class="modal-comments-section">
             <h3>Comentarios ({{ selectedPost.comment_count || 0 }})</h3>
             <div class="comment-input-box">
@@ -177,8 +200,8 @@ export default {
       commentInput: null,
       currentUserId: null,
       userAvatar: 'https://ddragon.leagueoflegends.com/cdn/14.1.1/img/profileicon/1.png',
-      userVotes: {},
-      commentUserVotes: {},
+      userVotes: {},              // { postId: 'up'|'down' }
+      commentUserVotes: {},       // { commentId: 'up'|'down' }
       postComments: [],
       posts: [],
       loading: true,
@@ -187,6 +210,7 @@ export default {
   },
   computed: {
     filteredPosts() {
+      // Filtra las publicaciones según la categoría elegida
       let result = this.posts;
       if (this.currentFilter === 'saved') {
         result = this.posts.filter(p => this.savedPosts.has(p.id));
@@ -197,6 +221,7 @@ export default {
       return result;
     },
     selectedPost() {
+      // Publicación que se está viendo en la ventana de detalle
       return this.posts.find(p => p.id === this.selectedPostId);
     }
   },
@@ -211,6 +236,7 @@ export default {
     this.loadSavedPosts();
   },
   methods: {
+    // Trae las publicaciones desde el servidor
     async loadPosts() {
       try {
         const response = await fetch('api/posts.php');
@@ -223,6 +249,7 @@ export default {
       }
       this.loading = false;
     },
+    // Trae las publicaciones guardadas por el usuario
     async loadSavedPosts() {
       if (!this.currentUserId) return;
       try {
@@ -243,6 +270,7 @@ export default {
       this.currentFilter = 'saved';
       this.selectedCategory = null;
     },
+    // Cambia la fecha a un texto como "hace 5 min"
     formatTime(timestamp) {
       if (!timestamp) return '';
       const date = new Date(timestamp);
@@ -255,6 +283,7 @@ export default {
       if (hours < 24) return `hace ${hours} horas`;
       return `hace ${days} días`;
     },
+    // Vota una publicación (arriba o abajo)
     async vote(postId, direction) {
       try {
         const response = await fetch('api/comments.php', {
@@ -271,7 +300,7 @@ export default {
         if (data.success) {
           const post = this.posts.find(p => p.id === postId);
           if (post) post.vote_count = data.votes;
-          
+
           const currentVote = this.userVotes[postId];
           if (currentVote === direction) {
             delete this.userVotes[postId];
@@ -284,6 +313,7 @@ export default {
         console.error('Error voting:', e);
       }
     },
+    // Vota un comentario (arriba o abajo)
     async voteComment(commentId, direction) {
       try {
         const response = await fetch('api/comments.php', {
@@ -300,7 +330,7 @@ export default {
         if (data.success) {
           const comment = this.postComments.find(c => c.id === commentId);
           if (comment) comment.vote_count = data.votes;
-          
+
           const currentVote = this.commentUserVotes[commentId];
           if (currentVote === direction) {
             delete this.commentUserVotes[commentId];
@@ -313,11 +343,12 @@ export default {
         console.error('Error voting comment:', e);
       }
     },
+    // Abre la ventana de detalle de una publicación y carga sus comentarios
     async openModal(postId) {
       this.selectedPostId = postId;
       this.modalOpen = true;
       document.body.style.overflow = 'hidden';
-      
+
       try {
         const response = await fetch('api/comments.php', {
           method: 'POST',
@@ -341,6 +372,7 @@ export default {
       this.selectedPostId = null;
       this.postComments = [];
     },
+    // Guarda o quita una publicación de favoritos
     async toggleSave(postId) {
       try {
         const response = await fetch('api/saved.php', {
@@ -366,6 +398,7 @@ export default {
       navigator.clipboard.writeText(`Nexus Hub - ${post.title}`);
       alert(`Compartir: "${post.title}"\n\n✓ Enlace copiado`);
     },
+    // Borra una publicación (solo el dueño puede)
     async deletePost(postId) {
       if (confirm('¿Eliminar este post?')) {
         try {
@@ -387,6 +420,7 @@ export default {
         }
       }
     },
+    // Borra un comentario (solo el dueño puede)
     async deleteComment(commentId) {
       try {
         const response = await fetch('api/comments.php', {
@@ -414,6 +448,7 @@ export default {
         if (input) input.focus();
       });
     },
+    // Agrega un comentario a la publicación actual
     async addComment() {
       if (this.newComment.trim() && this.selectedPostId) {
         try {
@@ -446,6 +481,7 @@ export default {
         }
       }
     },
+    // Crea una publicación nueva en el foro
     async createPost() {
       if (this.newPostTitle.trim() && this.newPostText.trim() && this.newPostCategory) {
         try {
@@ -477,6 +513,7 @@ export default {
     }
   },
   mounted() {
+    // Cierra la ventana de detalle con la tecla Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') this.closeModal();
     });

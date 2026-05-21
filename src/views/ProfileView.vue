@@ -1,4 +1,5 @@
 <template>
+  <!-- Perfil del jugador: busca datos de League of Legends y muestra clasificaciones -->
   <div class="summoner-profile-section">
     <div class="profile-header">
       <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
@@ -13,6 +14,7 @@
       </div>
     </div>
 
+    <!-- Buscador de jugador por nombre, etiqueta y región -->
     <div class="search-section">
       <h3>Buscar Invocador</h3>
       <div class="search-form">
@@ -40,6 +42,7 @@
       <p v-if="error" class="error-message">{{ error }}</p>
     </div>
 
+    <!-- Resultados de la búsqueda: datos del jugador y sus rangos -->
     <div v-if="summonerData" class="profile-container">
       <div class="summoner-info-card">
         <div class="summoner-header">
@@ -56,6 +59,7 @@
         </div>
       </div>
 
+      <!-- Clasificaciones por tipo de cola (Solo/Dúo, Flex, Arena) -->
       <div class="rankings-section">
         <h3>Clasificaciones</h3>
         <div class="rankings-grid">
@@ -95,6 +99,7 @@
       </div>
     </div>
 
+    <!-- Datos de ejemplo cuando no hay búsqueda -->
     <div v-else class="profile-container">
       <div class="summoner-info-card">
         <h3 class="most-played-title">Campeón Más Jugado</h3>
@@ -125,6 +130,7 @@
       </div>
     </div>
 
+    <!-- Otros campeones frecuentes (datos de ejemplo) -->
     <div class="other-champions">
       <h3>Otros campeones frecuentes</h3>
       <div class="champions-grid">
@@ -155,6 +161,7 @@ export default {
         winRate: 54,
         avatar: 'https://ddragon.leagueoflegends.com/cdn/14.1.1/img/profileicon/1.png'
       },
+      // Campeón más jugado (datos de ejemplo)
       mostPlayed: {
         name: 'Ahri',
         image: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_0.jpg',
@@ -163,6 +170,7 @@ export default {
         games: 487,
         winRate: 56
       },
+      // Otros campeones (datos de ejemplo)
       otherChampions: [
         { name: 'Lissandra', image: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lissandra_0.jpg', mastery: 142320 },
         { name: 'Syndra', image: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Syndra_0.jpg', mastery: 98750 },
@@ -173,12 +181,13 @@ export default {
         tagLine: '',
         region: 'la1'
       },
-      summonerData: null,
+      summonerData: null,   // Datos que llegaron de Riot Games
       loading: false,
       error: ''
     };
   },
   created() {
+    // Carga los datos del usuario desde el almacenamiento del navegador
     const user = localStorage.getItem('nexus_user');
     if (user) {
       const userData = JSON.parse(user);
@@ -188,26 +197,27 @@ export default {
     }
   },
   methods: {
+    // Busca un jugador en Riot Games usando el servidor
     async searchSummoner() {
       if (!this.searchData.gameName || !this.searchData.tagLine) {
         this.error = 'Por favor ingresa el nombre y tag del invocador';
         return;
       }
-      
+
       this.loading = true;
       this.error = '';
-      
+
       try {
         const response = await fetch(
           `/api/account.php?gameName=${encodeURIComponent(this.searchData.gameName)}&tagLine=${encodeURIComponent(this.searchData.tagLine)}&region=${encodeURIComponent(this.searchData.region)}`
         );
-        
+
         const data = await response.json();
-        
+
         if (!response.ok || data.error) {
           throw new Error(data.error || data.details || 'Invocador no encontrado');
         }
-        
+
         this.summonerData = data;
       } catch (err) {
         this.error = err.message || 'Error al buscar el invocador';
@@ -216,6 +226,7 @@ export default {
         this.loading = false;
       }
     },
+    // Busca la imagen del emblema según el rango
     getTierImage(tier) {
       const tierImages = {
         'IRON': 'https://raw.githubusercontent.com/nickcde/league-assets/main/ranked-emblems/Emblem_Iron.png',
@@ -231,6 +242,7 @@ export default {
       };
       return tierImages[tier] || tierImages['IRON'];
     },
+    // Cierra la sesión (borra los datos del navegador)
     logout() {
       localStorage.removeItem('nexus_user');
       this.$router.push('/login');

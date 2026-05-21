@@ -1,20 +1,36 @@
 <?php
 
+// ============================================================
+// INSTALACIÓN DE LA BASE DE DATOS
+// Crea la base de datos 'nexus_hub' y todas las tablas necesarias
+// Solo hay que ejecutar esto una vez
+// ============================================================
+
+// Datos para conectarse a MySQL
 $servername = "localhost";
 $username = "root";
 $password = "";
 
 try {
+    // Conecta al servidor de bases de datos
     $conn = new PDO("mysql:host=$servername", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    // ============================================================
+    // CREAR LA BASE DE DATOS
+    // ============================================================
     $sql = "CREATE DATABASE IF NOT EXISTS nexus_hub CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci";
     $conn->exec($sql);
     echo "Base de datos 'nexus_hub' creada/verificada<br>";
 
+    // Empieza a usar la base de datos
     $conn->exec("USE nexus_hub");
 
-    // Tabla de usuarios
+    // ============================================================
+    // TABLA: users (usuarios)
+    // Guarda la información de cada persona registrada
+    // id, nombre de usuario, correo, contraseña (encriptada), avatar, fecha de registro, último ingreso
+    // ============================================================
     $sql = "CREATE TABLE IF NOT EXISTS users (
         id INT AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(50) NOT NULL UNIQUE,
@@ -27,7 +43,11 @@ try {
     $conn->exec($sql);
     echo "Tabla 'users' creada/verificada<br>";
 
-    // Tabla de posts del foro
+    // ============================================================
+    // TABLA: posts (publicaciones del foro)
+    // Cada publicación tiene: título, descripción, imagen, etiqueta, votos
+    // Está relacionada con el usuario que la creó
+    // ============================================================
     $sql = "CREATE TABLE IF NOT EXISTS posts (
         id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT NOT NULL,
@@ -45,7 +65,11 @@ try {
     $conn->exec($sql);
     echo "Tabla 'posts' creada/verificada<br>";
 
-    // Tabla de votos de posts
+    // ============================================================
+    // TABLA: post_votes (votos de publicaciones)
+    // Cada usuario puede votar una vez por publicación (arriba o abajo)
+    // No se permiten votos repetidos
+    // ============================================================
     $sql = "CREATE TABLE IF NOT EXISTS post_votes (
         id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT NOT NULL,
@@ -59,7 +83,11 @@ try {
     $conn->exec($sql);
     echo "Tabla 'post_votes' creada/verificada<br>";
 
-    // Tabla de comentarios
+    // ============================================================
+    // TABLA: comments (comentarios)
+    // Los comentarios que se escriben en las publicaciones
+    // Cada uno pertenece a una publicación y a un usuario
+    // ============================================================
     $sql = "CREATE TABLE IF NOT EXISTS comments (
         id INT AUTO_INCREMENT PRIMARY KEY,
         post_id INT NOT NULL,
@@ -74,7 +102,10 @@ try {
     $conn->exec($sql);
     echo "Tabla 'comments' creada/verificada<br>";
 
-    // Tabla de votos de comentarios
+    // ============================================================
+    // TABLA: comment_votes (votos de comentarios)
+    // Cada usuario puede votar una vez por comentario
+    // ============================================================
     $sql = "CREATE TABLE IF NOT EXISTS comment_votes (
         id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT NOT NULL,
@@ -88,7 +119,11 @@ try {
     $conn->exec($sql);
     echo "Tabla 'comment_votes' creada/verificada<br>";
 
-    // Tabla de mensajes de contacto
+    // ============================================================
+    // TABLA: contact_messages (mensajes de contacto)
+    // Guarda los mensajes del formulario de contacto
+    // Si el usuario está registrado, guarda su ID también
+    // ============================================================
     $sql = "CREATE TABLE IF NOT EXISTS contact_messages (
         id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT DEFAULT NULL,
@@ -103,7 +138,10 @@ try {
     $conn->exec($sql);
     echo "Tabla 'contact_messages' creada/verificada<br>";
 
-    // Tabla de chats (IA)
+    // ============================================================
+    // TABLA: chats (conversaciones con la IA)
+    // Guarda lo que el usuario preguntó y lo que respondió Gemini
+    // ============================================================
     $sql = "CREATE TABLE IF NOT EXISTS chats (
         id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT NOT NULL,
@@ -116,7 +154,10 @@ try {
     $conn->exec($sql);
     echo "Tabla 'chats' creada/verificada<br>";
 
-    // Tabla de posts guardados
+    // ============================================================
+    // TABLA: saved_posts (publicaciones guardadas)
+    // Guarda las publicaciones que cada usuario marcó como favoritas
+    // ============================================================
     $sql = "CREATE TABLE IF NOT EXISTS saved_posts (
         id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT NOT NULL,
@@ -129,10 +170,29 @@ try {
     $conn->exec($sql);
     echo "Tabla 'saved_posts' creada/verificada<br>";
 
+    // ============================================================
+    // TABLA: leaderboard (clasificación)
+    // Guarda el rango y estadísticas de cada usuario
+    // ============================================================
+    $sql = "CREATE TABLE IF NOT EXISTS leaderboard (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        user_id INT NOT NULL UNIQUE,
+        rank_tier VARCHAR(20) DEFAULT 'UNRANKED',
+        rank_division VARCHAR(5) DEFAULT 'I',
+        lp INT DEFAULT 0,
+        wins INT DEFAULT 0,
+        losses INT DEFAULT 0,
+        queue_type VARCHAR(30) DEFAULT 'RANKED_SOLO_5x5',
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    )";
+    $conn->exec($sql);
+    echo "Tabla 'leaderboard' creada/verificada<br>";
+
     echo "<br><strong>✓ Setup completo!</strong><br>";
     echo "<a href='../index.html'>Volver al inicio</a>";
 
-} catch(PDOException $e) {
+} catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
 

@@ -1,5 +1,14 @@
 <template>
+  <!-- ============================================================ -->
+  <!-- PÁGINA PRINCIPAL                                             -->
+  <!-- Tiene: Carrusel + Tarjetas + Chat IA                       -->
+  <!-- ============================================================ -->
+
   <div class="home-content">
+
+    <!-- ============================================================ -->
+    <!-- CARRUSEL DE IMÁGENES                                          -->
+    <!-- ============================================================ -->
     <HeroCarousel 
       :slides="slides" 
       :abilities="abilities"
@@ -7,12 +16,18 @@
       :currentSlide="currentSlide"
       @select-ability="selectAbility"
     />
-    
+
+    <!-- ============================================================ -->
+    <!-- TARJETAS DESTACADAS                                          -->
+    <!-- ============================================================ -->
     <CardsSection 
       title="Destacados del Parche" 
       :cards="cards"
     />
-    
+
+    <!-- ============================================================ -->
+    <!-- CHAT CON IA                                                   -->
+    <!-- ============================================================ -->
     <ChatAI 
       title="Nexus AI"
       subtitle="Powered by Gemini"
@@ -24,25 +39,34 @@
       @load-history="loadFromHistory"
       @clear-history="clearHistory"
     />
+
   </div>
 </template>
 
 <script>
+// Trae los componentes
 import HeroCarousel from '../components/HeroCarousel.vue';
 import CardsSection from '../components/CardsSection.vue';
 import ChatAI from '../components/ChatAI.vue';
 
 export default {
   name: 'HomeView',
+
   components: {
     HeroCarousel,
     CardsSection,
     ChatAI
   },
+
+  // ============================================================
+  // DATOS
+  // ============================================================
   data() {
     return {
-      currentSlide: 0,
-      selectedAbility: null,
+      currentSlide: 0,        // Slide que se está viendo ahora
+      selectedAbility: null,  // Habilidad de Zaahen elegida
+
+      // ----- Imágenes del carrusel -----
       slides: [
         {
           image: '/leaguelegendsworlds_4385023b.jpg',
@@ -63,18 +87,44 @@ export default {
           button: 'Ver Recompensas'
         }
       ],
+
+      // ----- Habilidades del campeón Zaahen -----
       abilities: {
-        pasiva: { name: 'Pasiva - Escudo de Cristal', icon: '/pasiva_zaahen.png', description: 'Zaahen obtiene un escudo que se activa al recibir daño.' },
-        q: { name: 'Q - Impacto Cristalino', icon: '/q_zaahen.jfif', description: 'Lanza un cristal que causa daño y ralentiza.' },
-        w: { name: 'W - Refuerzos Cristalinos', icon: '/w_zaahen.jfif', description: 'Potencia a un aliado con escudo y velocidad de ataque.' },
-        e: { name: 'E - Campo de Cristales', icon: '/e_zaahen.jfif', description: 'Crea una zona que ralentiza a los enemigos.' },
-        r: { name: 'R - Tormenta Cristalina', icon: '/r_zaahen.jfif', description: 'Invoca una tormenta de cristales en área.' }
+        pasiva: {
+          name: 'Pasiva - Escudo de Cristal',
+          icon: '/pasiva_zaahen.png',
+          description: 'Zaahen obtiene un escudo que se activa al recibir daño.'
+        },
+        q: {
+          name: 'Q - Impacto Cristalino',
+          icon: '/q_zaahen.jfif',
+          description: 'Lanza un cristal que causa daño y ralentiza.'
+        },
+        w: {
+          name: 'W - Refuerzos Cristalinos',
+          icon: '/w_zaahen.jfif',
+          description: 'Potencia a un aliado con escudo y velocidad de ataque.'
+        },
+        e: {
+          name: 'E - Campo de Cristales',
+          icon: '/e_zaahen.jfif',
+          description: 'Crea una zona que ralentiza a los enemigos.'
+        },
+        r: {
+          name: 'R - Tormenta Cristalina',
+          icon: '/r_zaahen.jfif',
+          description: 'Invoca una tormenta de cristales en área.'
+        }
       },
+
+      // ----- Tarjetas de abajo -----
       cards: [
         { image: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg', title: 'Aatrox Buffeado', description: 'El destructor oscuro vuelve al meta gracias a mejoras en su Q y sustain en línea.', button: 'Leer Más' },
         { image: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ezreal_0.jpg', title: 'Nuevo Build para Ezreal', description: 'Letalidad vuelve a ser viable. Descubre la build más rota del parche 15.9.', button: 'Ver Build' },
         { image: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Morgana_0.jpg', title: 'Evento: Eclipse Lunar', description: 'Recompensas exclusivas, misiones y skins temáticas para todos los roles.', button: 'Detalles' }
       ],
+
+      // ----- Chat IA -----
       messages: [
         { type: 'bot', text: '¡Hola! Soy Nexus AI, tu asistente de League of Legends. ¿Qué quieres saber? Puedo ayudarte con:<ul><li>Builds y objetos para cualquier campeón</li><li>Runas y configuraciones</li><li>Counter picks y matchups</li><li>Estrategias y macros</li><li>Información de parches</li></ul>' }
       ],
@@ -83,6 +133,10 @@ export default {
       currentUserId: null
     };
   },
+
+  // ============================================================
+  // AL INICIAR
+  // ============================================================
   created() {
     const user = localStorage.getItem('nexus_user');
     if (user) {
@@ -90,20 +144,41 @@ export default {
       this.currentUserId = userData.id;
     }
   },
+
+  // ============================================================
+  // AL CARGAR LA PÁGINA
+  // ============================================================
   mounted() {
+    // Cambia de slide cada 5 segundos
     setInterval(() => {
       this.currentSlide = (this.currentSlide + 1) % this.slides.length;
     }, 5000);
+
+    // Trae el historial del chat
     this.loadHistory();
   },
+
+  // ============================================================
+  // FUNCIONES
+  // ============================================================
   methods: {
+
+    // ----------------------------------------------------------
+    // selectAbility: elige una habilidad de Zaahen
+    // ----------------------------------------------------------
     selectAbility(key) {
       this.selectedAbility = key;
     },
+
+    // ----------------------------------------------------------
+    // handleSendMessage: envía un mensaje al chat
+    // ----------------------------------------------------------
     async handleSendMessage(message) {
       this.messages.push({ type: 'user', text: message });
       this.isLoading = true;
+
       try {
+        // Envía el mensaje al servidor (api/chat.php)
         const response = await fetch('api/chat.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -113,6 +188,7 @@ export default {
           })
         });
         const data = await response.json();
+
         if (data.success) {
           this.messages.push({ type: 'bot', text: data.chat.response });
           this.history.unshift(data.chat);
@@ -124,12 +200,19 @@ export default {
         console.error('Error:', error);
         this.messages.push({ type: 'bot', text: 'Error de conexión. Verifica que el servidor PHP esté funcionando.' });
       }
+
       this.isLoading = false;
+
+      // Baja hasta el final del chat
       this.$nextTick(() => {
         const chatMessages = document.getElementById('chatMessages');
         if (chatMessages) chatMessages.scrollTop = chatMessages.scrollHeight;
       });
     },
+
+    // ----------------------------------------------------------
+    // loadFromHistory: carga una conversación del historial
+    // ----------------------------------------------------------
     loadFromHistory(item) {
       this.messages = [
         { type: 'bot', text: '¡Hola! Soy Nexus AI, tu asistente de League of Legends. ¿Qué quieres saber?' },
@@ -137,11 +220,20 @@ export default {
         { type: 'bot', text: item.response }
       ];
     },
+
+    // ----------------------------------------------------------
+    // clearHistory: borra el historial
+    // ----------------------------------------------------------
     clearHistory() {
       this.history = [];
     },
+
+    // ----------------------------------------------------------
+    // loadHistory: pide el historial al servidor
+    // ----------------------------------------------------------
     async loadHistory() {
       if (!this.currentUserId) return;
+
       try {
         const response = await fetch('api/get_chats.php');
         const data = await response.json();
@@ -152,6 +244,7 @@ export default {
         console.log('No se pudo cargar el historial');
       }
     }
+
   }
 };
 </script>

@@ -1,35 +1,56 @@
 <template>
+  <!-- ============================================================ -->
+  <!-- FORMULARIO DE CONTACTO                                       -->
+  <!-- ============================================================ -->
+
   <div class="login-section">
     <div class="login-container">
+
+      <!-- ============================================================ -->
+      <!-- TÍTULO                                                         -->
+      <!-- ============================================================ -->
       <div class="login-header">
         <h2>Contacto</h2>
         <p>¿Tienes alguna pregunta? Contáctanos</p>
       </div>
+
+      <!-- ============================================================ -->
+      <!-- FORMULARIO                                                    -->
+      <!-- ============================================================ -->
       <div class="login-form-box">
+
         <form @submit.prevent="handleSubmit">
+
           <div class="form-group">
             <label for="name">Nombre</label>
             <input type="text" id="name" v-model="form.name" required placeholder="Tu nombre">
           </div>
+
           <div class="form-group">
             <label for="email">Correo Electrónico</label>
             <input type="email" id="email" v-model="form.email" required placeholder="tu@email.com">
           </div>
+
           <div class="form-group">
             <label for="subject">Asunto</label>
             <input type="text" id="subject" v-model="form.subject" required placeholder="Asunto del mensaje">
           </div>
+
           <div class="form-group">
             <label for="message">Mensaje</label>
             <textarea id="message" v-model="form.message" required placeholder="Tu mensaje..." rows="5"></textarea>
           </div>
+
           <p v-if="error" style="color: #dc3545;">{{ error }}</p>
           <p v-if="success" style="color: #4ade80;">{{ success }}</p>
+
           <button type="submit" class="btn-login">Enviar Mensaje</button>
         </form>
+
         <div class="login-links">
           <router-link to="/profile" class="register-link">Volver a mi perfil</router-link>
         </div>
+
       </div>
     </div>
   </div>
@@ -38,6 +59,10 @@
 <script>
 export default {
   name: 'ContactView',
+
+  // ============================================================
+  // DATOS
+  // ============================================================
   data() {
     return {
       form: {
@@ -50,6 +75,11 @@ export default {
       success: ''
     };
   },
+
+  // ============================================================
+  // AL INICIAR
+  // Rellena el nombre y correo con los datos del usuario
+  // ============================================================
   created() {
     const user = localStorage.getItem('nexus_user');
     if (user) {
@@ -58,12 +88,23 @@ export default {
       this.form.email = userData.email;
     }
   },
+
+  // ============================================================
+  // FUNCIONES
+  // ============================================================
   methods: {
+
+    // ----------------------------------------------------------
+    // handleSubmit: envía el formulario al servidor
+    // ----------------------------------------------------------
     async handleSubmit() {
       this.error = '';
       this.success = '';
+
       try {
         const user = JSON.parse(localStorage.getItem('nexus_user') || '{}');
+
+        // Envía los datos al servidor
         const response = await fetch('api/contact.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -76,7 +117,7 @@ export default {
           })
         });
         const data = await response.json();
-        
+
         if (data.success) {
           this.success = 'Mensaje enviado correctamente';
           this.form.subject = '';

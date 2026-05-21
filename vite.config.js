@@ -1,10 +1,11 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
+// Configuración de Vite para el proyecto Nexus Hub
 export default defineConfig({
-  plugins: [vue()],
-  root: '.',
-  publicDir: 'public',
+  plugins: [vue()],                             // Agrega el soporte para Vue 3
+  root: '.',                                    // Carpeta principal del proyecto
+  publicDir: 'public',                          // Carpeta con imágenes y archivos
   server: {
     port: 5173,
     open: false,
@@ -16,7 +17,7 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: 'dist',
-    emptyOutDir: true
+    outDir: 'dist',                             // Carpeta donde se guarda el sitio listo
+    emptyOutDir: true                           // Limpia la carpeta antes de guardar
   }
 });
